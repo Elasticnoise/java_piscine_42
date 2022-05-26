@@ -4,12 +4,12 @@ import java.util.UUID;
 
 class TransactionNotFoundException extends RuntimeException {}
 
-public class TransactionsLinkedList {
+public class TransactionsLinkedList implements TransactionList {
     private Node start;
     private Node end;
     private Integer count;
 
-    private TransactionsLinkedList() {
+    public TransactionsLinkedList() {
         start = new Node(null);
         end = new Node(null);
 
@@ -22,15 +22,17 @@ public class TransactionsLinkedList {
         return start.next();
     }
 
-    void add(User user) {
+    @Override
+    public void add(Transaction transaction) {
         (new Node(transaction)).pushBack(end);
         count++;
     }
 
-    Transaction remove(UUID uuid) {
+    @Override
+    public Transaction remove(UUID uuid) {
         Node node = first();
         while (node != end) {
-            if (uuid.compareTo(node.getTransaction().getIdentifier())) {
+            if (uuid.equals(node.getTransaction().getIdentifier())) {
                 node.cut();
                 count--;
                 return node.getTransaction();
@@ -40,7 +42,7 @@ public class TransactionsLinkedList {
         throw new TransactionNotFoundException();
     }
 
-    Transaction[] toArray() {
+    public Transaction[] toArray() {
         Transaction[] transactions = new Transaction[count];
 
         Node node = first();
