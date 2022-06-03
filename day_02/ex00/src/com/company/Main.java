@@ -77,7 +77,7 @@ public class Main {
                 break;
             }
             try {
-                result = fileQualifier(file_path, createFileMap());
+                result = fileQualifier(file_path, crdeateFileMap());
                 if (result == null)
                     System.out.println("UNDEFINED");
                 else {
