@@ -1,11 +1,6 @@
 package com.company;
 
 public class CheckArgs {
-//    private final String argValue;
-
-//    CheckArgs() {
-//        this.argValue = argValue;
-//    }
 
     public static boolean isOneArg(String[] args) {
         return args.length == 2;

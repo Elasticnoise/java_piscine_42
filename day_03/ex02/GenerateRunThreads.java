@@ -9,15 +9,12 @@ public class GenerateRunThreads {
 
         for (int i = 0; i < countThreads; i++) {
             if (i < countThreads - 1) {
-//                System.out.println(start);
                 runThreadsArray[i] = new RunThread(start, end, array);
                 start += step;
                 end += step;
             }
             else {
-//                step = (array.length % countThreads) + start;
                 end += (array.length % countThreads);
-//                System.out.println(end);
                 runThreadsArray[i] = new RunThread(start, end, array);
             }
 
@@ -29,12 +26,10 @@ public class GenerateRunThreads {
     public static void startThreads(RunThread[] runThreadsArray) {
         Thread[] threadsArray = new Thread[runThreadsArray.length];
 
-        for (int i = 0; i < runThreadsArray.length; i++) {
+        for (int i = 0; i < runThreadsArray.length; i++)
             threadsArray[i] = new Thread(runThreadsArray[i]);
-        }
 
-        for (Thread thread : threadsArray) {
+        for (Thread thread : threadsArray)
             thread.start();
-        }
     }
 }
